@@ -4,6 +4,68 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>IUBAT Frame Generator</title>
+<div class="container">
+    const nameInput = document.getElementById('nameInput');
+    const previewName = document.getElementById('previewName');
+
+    imageInput.addEventListener('change', function(e) {
+      const file = e.target.files[0];
+
+      if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function(event) {
+          profileImage.src = event.target.result;
+        }
+
+        reader.readAsDataURL(file);
+      }
+    });
+
+    nameInput.addEventListener('input', function() {
+      previewName.innerText = this.value || 'YOUR NAME HERE';
+    });
+
+    function downloadImage() {
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d');
+
+      const frame = document.getElementById('frameImage');
+      const profile = document.getElementById('profileImage');
+
+      canvas.width = 1080;
+      canvas.height = 1350;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw profile circle
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(540, 220, 170, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.clip();
+
+      ctx.drawImage(profile, 370, 50, 340, 340);
+      ctx.restore();
+
+      // Draw name
+      ctx.font = 'bold 55px Arial';
+      ctx.fillStyle = 'white';
+      ctx.textAlign = 'center';
+      ctx.fillText(previewName.innerText.toUpperCase(), 540, 570);
+
+      // Draw frame
+      ctx.drawImage(frame, 0, 0, 1080, 1350);
+
+      const link = document.createElement('a');
+      link.download = 'iubat-frame.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+  </script>
+
+</body>
+</html>
 
   <style>
     * {
