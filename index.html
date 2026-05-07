@@ -1,13 +1,13 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Frame Generator</title>
+<title>IFP 1st Anniversary Frame</title>
 
 <style>
+
 *{
 margin:0;
 padding:0;
@@ -18,50 +18,71 @@ font-family:Arial,sans-serif;
 body{
 background:#000;
 color:#fff;
+min-height:100vh;
+padding:20px;
 display:flex;
 justify-content:center;
 align-items:center;
-min-height:100vh;
-padding:20px;
 }
+
+/* MAIN CONTAINER */
 
 .container{
 width:100%;
-max-width:430px;
+max-width:1400px;
 background:#111;
-padding:20px;
+padding:30px;
 border-radius:24px;
 }
 
-h1{
+/* HEADER */
+
+.header{
 text-align:center;
+margin-bottom:35px;
+}
+
+.header h1{
+font-size:38px;
 margin-bottom:10px;
 }
 
-p{
-text-align:center;
+.header p{
 color:#aaa;
-margin-bottom:20px;
+font-size:16px;
 }
 
-input{
-width:100%;
-padding:14px;
-border:none;
-border-radius:12px;
-margin-bottom:14px;
-background:#222;
-color:#fff;
+/* CONTENT AREA */
+
+.content{
+display:flex;
+justify-content:center;
+align-items:flex-start;
+gap:40px;
 }
+
+/* LEFT PANEL */
+
+.left-panel{
+flex:1;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+/* PREVIEW */
 
 .preview{
 position:relative;
 width:100%;
+max-width:520px;
 aspect-ratio:4/5;
 overflow:hidden;
-border-radius:20px;
+border-radius:24px;
 background:#000;
 }
+
+/* PROFILE */
 
 .profile{
 position:absolute;
@@ -84,6 +105,8 @@ height:100%;
 object-fit:cover;
 }
 
+/* FRAME */
+
 .frame{
 position:absolute;
 inset:0;
@@ -92,6 +115,8 @@ height:100%;
 object-fit:cover;
 z-index:2;
 }
+
+/* USERNAME */
 
 .username{
 position:absolute;
@@ -102,36 +127,107 @@ width:90%;
 text-align:center;
 font-size:22px;
 font-weight:bold;
+text-transform:uppercase;
 z-index:3;
 }
+
+/* RIGHT PANEL */
+
+.right-panel{
+width:360px;
+display:flex;
+flex-direction:column;
+}
+
+/* INPUTS */
+
+input{
+width:100%;
+padding:14px;
+border:none;
+border-radius:12px;
+margin-bottom:16px;
+background:#222;
+color:#fff;
+font-size:15px;
+}
+
+/* CONTROLS */
 
 .control{
 margin-top:10px;
 }
 
 label{
+display:block;
+margin-bottom:8px;
 font-size:14px;
 color:#bbb;
-display:block;
-margin-bottom:6px;
 }
+
+.range{
+width:100%;
+}
+
+/* BUTTON */
 
 button{
 width:100%;
-padding:15px;
+padding:16px;
 border:none;
 border-radius:14px;
 background:orange;
 color:black;
-font-weight:bold;
 font-size:18px;
-margin-top:18px;
+font-weight:bold;
 cursor:pointer;
+margin-top:22px;
+transition:0.3s;
 }
+
+button:hover{
+opacity:0.9;
+}
+
+/* CANVAS */
 
 canvas{
 display:none;
 }
+
+/* MOBILE RESPONSIVE */
+
+@media(max-width:950px){
+
+body{
+padding:15px;
+align-items:flex-start;
+}
+
+.container{
+padding:20px;
+}
+
+.content{
+flex-direction:column;
+align-items:center;
+}
+
+.right-panel{
+width:100%;
+max-width:520px;
+}
+
+.preview{
+max-width:520px;
+}
+
+.header h1{
+font-size:30px;
+}
+
+}
+
 </style>
 </head>
 
@@ -139,61 +235,118 @@ display:none;
 
 <div class="container">
 
-<h1>IUBAT Frame Generator</h1>
-<p>Upload photo, reposition and download</p>
+    <!-- HEADER -->
 
-<input type="file" id="imageInput" accept="image/*">
-<input type="text" id="nameInput" placeholder="Enter your name">
+    <div class="header">
+        <h1>IFP Anniversary Frame</h1>
+        <p>Upload Photo, Customize and Download</p>
+    </div>
 
-<div class="preview">
+    <!-- CONTENT -->
 
-<div class="profile">
-<img id="profileImage" src="https://placehold.co/600">
-</div>
+    <div class="content">
 
-<div class="username" id="previewName">
-YOUR NAME HERE
-</div>
+        <!-- LEFT SIDE -->
 
-<img src="frame.png" class="frame" id="frameImage">
+        <div class="left-panel">
 
-</div>
+            <div class="preview">
 
-<div class="control">
-<label>Zoom</label>
-<input type="range" id="zoomSlider" min="1" max="3" step="0.1" value="1">
-</div>
+                <!-- PROFILE IMAGE -->
 
-<div class="control">
-<label>Move Left / Right (X)</label>
-<input type="range" id="xSlider" min="-150" max="150" step="1" value="0">
-</div>
+                <div class="profile">
+                    <img id="profileImage" src="https://placehold.co/600">
+                </div>
 
-<div class="control">
-<label>Move Up / Down (Y)</label>
-<input type="range" id="ySlider" min="-150" max="150" step="1" value="0">
-</div>
+                <!-- NAME -->
 
-<button onclick="downloadImage()">Download Image</button>
+                <div class="username" id="previewName">
+                    Type Your Name
+                </div>
 
-<canvas id="canvas" width="1080" height="1350"></canvas>
+                <!-- FRAME -->
+
+                <img src="frame.png" class="frame" id="frameImage">
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT SIDE -->
+
+        <div class="right-panel">
+
+            <input type="file" id="imageInput" accept="image/*">
+
+            <input type="text" id="nameInput" placeholder="Enter your name">
+
+            <!-- ZOOM -->
+
+            <div class="control">
+                <label>Zoom Image</label>
+                <input type="range" class="range" id="zoomSlider" min="1" max="3" step="0.1" value="1">
+            </div>
+
+            <!-- X POSITION -->
+
+            <div class="control">
+                <label>Move Image Left / Right (X)</label>
+                <input type="range" class="range" id="xSlider" min="-150" max="150" step="1" value="0">
+            </div>
+
+            <!-- Y POSITION -->
+
+            <div class="control">
+                <label>Move Image Up / Down (Y)</label>
+                <input type="range" class="range" id="ySlider" min="-150" max="150" step="1" value="0">
+            </div>
+
+            <!-- NAME SIZE -->
+
+            <div class="control">
+                <label>Change Name Size</label>
+                <input type="range" class="range" id="nameSizeSlider" min="14" max="48" step="1" value="22">
+            </div>
+
+            <!-- DOWNLOAD -->
+
+            <button onclick="downloadImage()">
+                Download Image
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- CANVAS -->
+
+    <canvas id="canvas" width="1080" height="1350"></canvas>
 
 </div>
 
 <script>
 
+/* ELEMENTS */
+
 const imageInput = document.getElementById('imageInput');
 const profileImage = document.getElementById('profileImage');
+
 const nameInput = document.getElementById('nameInput');
 const previewName = document.getElementById('previewName');
 
 const zoomSlider = document.getElementById('zoomSlider');
 const xSlider = document.getElementById('xSlider');
 const ySlider = document.getElementById('ySlider');
+const nameSizeSlider = document.getElementById('nameSizeSlider');
+
+/* VARIABLES */
 
 let scale = 1;
 let posX = 0;
 let posY = 0;
+let nameSize = 22;
+
+/* IMAGE UPLOAD */
 
 imageInput.addEventListener('change', function(e){
 
@@ -204,7 +357,9 @@ if(file){
 const reader = new FileReader();
 
 reader.onload = function(event){
+
 profileImage.src = event.target.result;
+
 }
 
 reader.readAsDataURL(file);
@@ -213,24 +368,55 @@ reader.readAsDataURL(file);
 
 });
 
+/* NAME CHANGE */
+
 nameInput.addEventListener('input', function(){
+
 previewName.innerText = this.value || 'YOUR NAME HERE';
+
 });
+
+/* ZOOM */
 
 zoomSlider.addEventListener('input', function(){
+
 scale = parseFloat(this.value);
+
 updateImage();
+
 });
+
+/* MOVE X */
 
 xSlider.addEventListener('input', function(){
+
 posX = parseInt(this.value);
+
 updateImage();
+
 });
 
+/* MOVE Y */
+
 ySlider.addEventListener('input', function(){
+
 posY = parseInt(this.value);
+
 updateImage();
+
 });
+
+/* NAME SIZE */
+
+nameSizeSlider.addEventListener('input', function(){
+
+nameSize = parseInt(this.value);
+
+previewName.style.fontSize = nameSize + 'px';
+
+});
+
+/* UPDATE IMAGE */
 
 function updateImage(){
 
@@ -238,6 +424,8 @@ profileImage.style.transform =
 `translate(${posX}px, ${posY}px) scale(${scale})`;
 
 }
+
+/* DOWNLOAD IMAGE */
 
 function downloadImage(){
 
@@ -251,14 +439,21 @@ canvas.height = 1350;
 
 ctx.clearRect(0,0,canvas.width,canvas.height);
 
+/* CIRCLE CLIP */
+
 ctx.save();
 
 ctx.beginPath();
+
 ctx.arc(540,220,170,0,Math.PI*2);
+
 ctx.closePath();
+
 ctx.clip();
 
 const drawSize = 340 * scale;
+
+/* DRAW PROFILE */
 
 ctx.drawImage(
 profileImage,
@@ -270,16 +465,32 @@ drawSize
 
 ctx.restore();
 
-ctx.font = 'bold 55px Arial';
+/* DRAW NAME */
+
+ctx.font = `bold ${nameSize * 2.5}px Arial`;
+
 ctx.fillStyle = 'white';
+
 ctx.textAlign = 'center';
-ctx.fillText(previewName.innerText.toUpperCase(),540,570);
+
+ctx.fillText(
+previewName.innerText.toUpperCase(),
+540,
+570
+);
+
+/* DRAW FRAME */
 
 ctx.drawImage(frame,0,0,1080,1350);
 
+/* DOWNLOAD */
+
 const link = document.createElement('a');
-link.download = 'ifp.png';
+
+link.download = 'iubat-frame.png';
+
 link.href = canvas.toDataURL('image/png');
+
 link.click();
 
 }
