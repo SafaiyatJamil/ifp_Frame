@@ -40,20 +40,21 @@
 
   header h1 {
     font-family: 'Cinzel', serif;
-    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-size: clamp(1.0rem, 3vw, 1.6rem);
     font-weight: 600;
     letter-spacing: 0.15em;
     background: linear-gradient(135deg, #c9933a, #f0c060, #c9933a);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.2rem;
   }
 
   header p {
-    font-size: 0.85rem;
+    font-family: 'Anton', San-serif;
+    font-size: 1.85rem;
     color: rgba(232,217,176,0.5);
-    letter-spacing: 0.08em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
   }
 
@@ -284,14 +285,52 @@
   @media (max-width: 700px) {
     .controls { width: 100%; max-width: 500px; }
   }
+.creator-tag{
+  margin-top:20px;
+  width:100%;
+  text-align:center;
+  color:#fff;
+  font-size:15px;
+  font-family:serif;
+
+  animation: floaty 3s ease-in-out infinite;
+}
+
+.creator-tag a{
+  color:#d4a63d;
+  text-decoration:none;
+  font-weight:bold;
+  margin-left:5px;
+}
+
+.creator-tag a:hover{
+  text-shadow:0 0 10px #d4a63d;
+}
+
+@keyframes floaty{
+  0%{
+    transform:translateY(0px);
+  }
+
+  50%{
+    transform:translateY(-10px);
+  }
+
+  100%{
+    transform:translateY(0px);
+  }
+}
 </style>
 </head>
 <body>
 
 <header>
-  <h1>IUBAT Films &amp; Photography</h1>
-  <p>1st Anniversary — Attendee Frame Generator</p>
+  <h1>1st Anniversary of </h1>
+
+  <p id="ifp">IUBAT Films & Photography</p>
 </header>
+
+
 
 <div class="app-container">
 
@@ -355,8 +394,18 @@
         <div class="big-icon">🖼</div>
         <div>Upload your photo &amp; generate</div>
       </div>
+
+
     </div>
+<div class="creator-tag">
+Made by :
+  <a href="https://facebook.com/0xjamil" target="_blank">
+    SAFAIYAT JAMIL
+  </a>
+</div>
   </div>
+
+
 
 </div>
 
