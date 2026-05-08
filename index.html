@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -322,6 +323,11 @@
 </div>
 
 <div class="field">
+  <label>Name Size</label>
+  <input type="range" id="nameSize" min="40" max="150" value="85">
+</div>
+
+<div class="field">
   <label>Photo Zoom</label>
   <input type="range" id="photoZoom" min="1" max="3" step="0.01" value="1">
 </div>
@@ -374,6 +380,7 @@ const uploadArea     = document.getElementById('uploadArea');
 const uploadPrompt   = document.getElementById('uploadPrompt');
 
 const namePosSlider = document.getElementById('namePosSlider');
+const nameSizeSlider = document.getElementById("nameSize");
 const photoZoom = document.getElementById('photoZoom');
 const photoX = document.getElementById('photoX');
 const photoY = document.getElementById('photoY');
@@ -418,7 +425,7 @@ nameInput.addEventListener('input', () => {
   if (userPhoto && frameImg) renderFrame();
 });
 
-[namePosSlider, photoZoom, photoX, photoY].forEach(control => {
+[namePosSlider, nameSizeSlider, photoZoom, photoX, photoY].forEach(control => {
   control.addEventListener('input', () => {
     if (userPhoto && frameImg) renderFrame();
   });
@@ -474,14 +481,14 @@ function renderFrame() {
     let textY = parseInt(namePosSlider.value);
     
     ctx.save();
-    ctx.font = 'bold 100px Cinzel, serif';
+    ctx.font = `${nameSizeSlider.value}px Cinzel`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
 
     ctx.shadowColor = 'rgba(255,255,255,0.6)';
     ctx.shadowBlur = 20;
     ctx.fillStyle = '#ffffff';
-    ctx.fillText(name, W/2, textY);
+    ctx.fillText(name, canvas.width / 2, namePosSlider.value);
     ctx.restore();
   }
 
